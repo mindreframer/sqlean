@@ -56,6 +56,7 @@ compile-windows-32:
 	gcc -shared -I. src/sqlite3-unicode.c -o dist/unicode-win32.dll -lm
 	gcc -shared -I. src/sqlite3-vsv.c -o dist/vsv-win32.dll -lm
 
+
 compile-macos:
 	gcc -fPIC -dynamiclib -I src src/sqlite3-crypto.c src/crypto/*.c -o dist/crypto.dylib -lm
 	gcc -fPIC -dynamiclib -I src src/sqlite3-ipaddr.c -o dist/ipaddr.dylib -lm
