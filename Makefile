@@ -18,6 +18,7 @@ download-native:
 	curl -L https://github.com/sqlite/sqlite/raw/master/ext/misc/series.c --output src/sqlite3-series.c
 	curl -L https://github.com/sqlite/sqlite/raw/master/ext/misc/memstat.c --output src/sqlite3-memstat.c
 
+
 compile-linux:
 	gcc -fPIC -shared src/sqlite3-crypto.c src/crypto/*.c -o dist/crypto.so -lm
 	gcc -fPIC -shared src/sqlite3-ipaddr.c -o dist/ipaddr.so -lm
