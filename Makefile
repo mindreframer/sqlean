@@ -1,5 +1,9 @@
 .PHONY: prepare-dist download-sqlite download-native compile-linux compile-windows compile-macos test
 
+SQLITE_RELEASE_YEAR ?= "2021"
+SQLITE_VERSION ?= "3360000"
+
+
 prepare-dist:
 	mkdir -p dist
 	rm -f dist/*
@@ -12,12 +16,14 @@ download-sqlite:
 download-native:
 	curl -L https://github.com/sqlite/sqlite/raw/master/ext/misc/json1.c --output src/sqlite3-json1.c
 	curl -L https://github.com/sqlite/sqlite/raw/master/ext/misc/series.c --output src/sqlite3-series.c
+	curl -L https://github.com/sqlite/sqlite/raw/master/ext/misc/memstat.c --output src/sqlite3-memstat.c
 
 compile-linux:
 	gcc -fPIC -shared src/sqlite3-crypto.c src/crypto/*.c -o dist/crypto.so -lm
 	gcc -fPIC -shared src/sqlite3-ipaddr.c -o dist/ipaddr.so -lm
 	gcc -fPIC -shared src/sqlite3-json1.c -o dist/json1.so -lm
 	gcc -fPIC -shared src/sqlite3-math.c -o dist/math.so -lm
+	gcc -fPIC -shared src/sqlite3-memstat.c -o dist/memstat.so -lm
 	gcc -fPIC -shared src/sqlite3-re.c src/re.c -o dist/re.so -lm
 	gcc -fPIC -shared src/sqlite3-series.c -o dist/series.so -lm
 	gcc -fPIC -shared src/sqlite3-stats.c -o dist/stats.so -lm
@@ -29,6 +35,7 @@ compile-windows:
 	gcc -shared -I. src/sqlite3-crypto.c src/crypto/*.c -o dist/crypto.dll -lm
 	gcc -shared -I. src/sqlite3-json1.c -o dist/json1.dll
 	gcc -shared -I. src/sqlite3-math.c -o dist/math.dll
+	gcc -shared -I. src/sqlite3-memstat.c -o dist/memstat.dll
 	gcc -shared -I. src/sqlite3-re.c src/re.c -o dist/re.dll
 	gcc -shared -I. src/sqlite3-series.c -o dist/series.dll
 	gcc -shared -I. src/sqlite3-stats.c -o dist/stats.dll
@@ -41,6 +48,7 @@ compile-macos:
 	gcc -fPIC -dynamiclib -I src src/sqlite3-ipaddr.c -o dist/ipaddr.dylib -lm
 	gcc -fPIC -dynamiclib -I src src/sqlite3-json1.c -o dist/json1.dylib -lm
 	gcc -fPIC -dynamiclib -I src src/sqlite3-math.c -o dist/math.dylib -lm
+	gcc -fPIC -dynamiclib -I src src/sqlite3-memstat.c -o dist/memstat.dylib -lm
 	gcc -fPIC -dynamiclib -I src src/sqlite3-re.c src/re.c -o dist/re.dylib -lm
 	gcc -fPIC -dynamiclib -I src src/sqlite3-series.c -o dist/series.dylib -lm
 	gcc -fPIC -dynamiclib -I src src/sqlite3-stats.c -o dist/stats.dylib -lm
