@@ -32,15 +32,27 @@ compile-linux:
 
 compile-windows:
 	gcc -shared -I. src/sqlite3-crypto.c src/crypto/*.c -o dist/crypto.dll -lm
-	gcc -shared -I. src/sqlite3-json1.c -o dist/json1.dll
-	gcc -shared -I. src/sqlite3-math.c -o dist/math.dll
-	gcc -shared -I. src/sqlite3-memstat.c -o dist/memstat.dll
-	gcc -shared -I. src/sqlite3-re.c src/re.c -o dist/re.dll
-	gcc -shared -I. src/sqlite3-series.c -o dist/series.dll
-	gcc -shared -I. src/sqlite3-stats.c -o dist/stats.dll
-	gcc -shared -I. src/sqlite3-text.c -o dist/text.dll
-	gcc -shared -I. src/sqlite3-unicode.c -o dist/unicode.dll
-	gcc -shared -I. src/sqlite3-vsv.c -o dist/vsv.dll
+	gcc -shared -I. src/sqlite3-json1.c -o dist/json1.dll -lm
+	gcc -shared -I. src/sqlite3-math.c -o dist/math.dll -lm
+	gcc -shared -I. src/sqlite3-memstat.c -o dist/memstat.dll -lm
+	gcc -shared -I. src/sqlite3-re.c src/re.c -o dist/re.dll -lm
+	gcc -shared -I. src/sqlite3-series.c -o dist/series.dll -lm
+	gcc -shared -I. src/sqlite3-stats.c -o dist/stats.dll -lm
+	gcc -shared -I. src/sqlite3-text.c -o dist/text.dll -lm
+	gcc -shared -I. src/sqlite3-unicode.c -o dist/unicode.dll -lm
+	gcc -shared -I. src/sqlite3-vsv.c -o dist/vsv.dll -lm
+
+compile-windows-32:
+	gcc -shared -I. src/sqlite3-crypto.c src/crypto/*.c -o dist/crypto-win32.dll -lm
+	gcc -shared -I. src/sqlite3-json1.c -o dist/json1-win32.dll -lm
+	gcc -shared -I. src/sqlite3-math.c -o dist/math-win32.dll -lm
+	gcc -shared -I. src/sqlite3-memstat.c -o dist/memstat-win32.dll -lm
+	gcc -shared -I. src/sqlite3-re.c src/re.c -o dist/re-win32.dll -lm
+	gcc -shared -I. src/sqlite3-series.c -o dist/series-win32.dll -lm
+	gcc -shared -I. src/sqlite3-stats.c -o dist/stats-win32.dll -lm
+	gcc -shared -I. src/sqlite3-text.c -o dist/text-win32.dll -lm
+	gcc -shared -I. src/sqlite3-unicode.c -o dist/unicode-win32.dll -lm
+	gcc -shared -I. src/sqlite3-vsv.c -o dist/vsv-win32.dll -lm
 
 compile-macos:
 	gcc -fPIC -dynamiclib -I src src/sqlite3-crypto.c src/crypto/*.c -o dist/crypto.dylib -lm
