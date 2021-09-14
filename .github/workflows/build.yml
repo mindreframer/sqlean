@@ -21,6 +21,7 @@ jobs:
                     - os: ubuntu-latest
                     - os: windows-latest
                     - os: macos-latest
+                    - os: windows-2019
 
         steps:
             - uses: actions/checkout@v2
@@ -47,6 +48,11 @@ jobs:
               if: matrix.os == 'windows-latest'
               shell: bash
               run: make compile-windows
+
+            - name: Build for Windows 2019
+              if: matrix.os == 'windows-2019'
+              shell: bash
+              run: make compile-windows-32
 
             - name: Build for macOS
               if: matrix.os == 'macos-latest'
