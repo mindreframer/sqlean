@@ -1,59 +1,59 @@
 name: build
 
 on:
-    push:
-        branches: [main]
-    pull_request:
-        branches: [main]
-    workflow_dispatch:
+  push:
+    branches: [forked]
+  pull_request:
+    branches: [forked]
+  workflow_dispatch:
 
 env:
-    SQLITE_RELEASE_YEAR: "2021"
-    SQLITE_VERSION: "3360000"
+  SQLITE_RELEASE_YEAR: "2021"
+  SQLITE_VERSION: "3360000"
 
 jobs:
-    build:
-        name: Build for ${{ matrix.os }}
-        runs-on: ${{ matrix.os }}
-        strategy:
-            matrix:
-                include:
-                    - os: ubuntu-latest
-                    - os: windows-latest
-                    - os: macos-latest
-                    - os: windows-2019
+  build:
+    name: Build for ${{ matrix.os }}
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        include:
+          - os: ubuntu-latest
+          - os: windows-latest
+          - os: macos-latest
+          - os: windows-2019
 
-        steps:
-            - uses: actions/checkout@v2
+    steps:
+      - uses: actions/checkout@v2
 
-            - name: Download SQLite sources
-              shell: bash
-              run: |
-                  make prepare-dist
-                  make download-sqlite
-                  make download-native
+      - name: Download SQLite sources
+        shell: bash
+        run: |
+          make prepare-dist
+          make download-sqlite
+          make download-native
 
-            - name: Build for Linux
-              if: matrix.os == 'ubuntu-latest'
-              run: |
-                  make compile-linux
-                  make test suite=crypto
-                  make test suite=regexp_replace
-                  make test suite=reverse
-                  make test suite=split_part
-                  make test suite=stats
-                  make test suite=ipaddr
+      - name: Build for Linux
+        if: matrix.os == 'ubuntu-latest'
+        run: |
+          make compile-linux
+          make test suite=crypto
+          make test suite=regexp_replace
+          make test suite=reverse
+          make test suite=split_part
+          make test suite=stats
+          make test suite=ipaddr
 
-            - name: Build for Windows
-              if: matrix.os == 'windows-latest'
-              shell: bash
-              run: make compile-windows
+      - name: Build for Windows
+        if: matrix.os == 'windows-latest'
+        shell: bash
+        run: make compile-windows
 
-            - name: Build for Windows 2019
-              if: matrix.os == 'windows-2019'
-              shell: bash
-              run: make compile-windows-32
+      - name: Build for Windows 2019
+        if: matrix.os == 'windows-2019'
+        shell: bash
+        run: make compile-windows-32
 
-            - name: Build for macOS
-              if: matrix.os == 'macos-latest'
-              run: make compile-macos
+      - name: Build for macOS
+        if: matrix.os == 'macos-latest'
+        run: make compile-macos
