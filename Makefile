@@ -34,6 +34,7 @@ compile-linux:
 
 compile-windows:
 	gcc -shared -I. src/sqlite3-crypto.c src/crypto/*.c -o dist/crypto.dll -lm
+	gcc -shared -I. src/sqlite3-ipaddr.c src/crypto/*.c -o dist/ipaddr.dll -lm
 	gcc -shared -I. src/sqlite3-json1.c -o dist/json1.dll -lm
 	gcc -shared -I. src/sqlite3-math.c -o dist/math.dll -lm
 	gcc -shared -I. src/sqlite3-memstat.c -o dist/memstat.dll -lm
@@ -46,6 +47,7 @@ compile-windows:
 
 compile-windows-32:
 	gcc -shared -I. src/sqlite3-crypto.c src/crypto/*.c -o dist/crypto-win32.dll -lm
+	gcc -shared -I. src/sqlite3-ipaddr.c src/crypto/*.c -o dist/ipaddr-win32.dll -lm
 	gcc -shared -I. src/sqlite3-json1.c -o dist/json1-win32.dll -lm
 	gcc -shared -I. src/sqlite3-math.c -o dist/math-win32.dll -lm
 	gcc -shared -I. src/sqlite3-memstat.c -o dist/memstat-win32.dll -lm
