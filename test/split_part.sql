@@ -1,3 +1,4 @@
+.read test/_settings.sql
 .load dist/text
 select '01', split_part(NULL, ',', 2) is NULL;
 select '02', split_part('', ',', 2) = '';

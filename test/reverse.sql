@@ -1,3 +1,4 @@
+.read test/_settings.sql
 .load dist/text
 select '01', reverse(null) is NULL;
 select '02', reverse('hello') = 'olleh';
