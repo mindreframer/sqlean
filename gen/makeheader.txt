@@ -1,0 +1,27 @@
+## **** GENERATED CODE! see gen/generateMakefile.js for more details!
+
+.PHONY: prepare-dist download-sqlite download-native compile-linux compile-windows compile-macos test
+
+SQLITE_RELEASE_YEAR ?= "2021"
+SQLITE_VERSION ?= "3360000"
+
+
+prepare-dist:
+	mkdir -p dist
+	rm -f dist/*
+
+download-sqlite:
+	curl -L http://sqlite.org/$(SQLITE_RELEASE_YEAR)/sqlite-amalgamation-$(SQLITE_VERSION).zip --output src.zip
+	unzip src.zip
+	mv sqlite-amalgamation-$(SQLITE_VERSION)/* src
+
+download-native:
+	curl -L https://github.com/sqlite/sqlite/raw/master/ext/misc/json1.c --output src/sqlite3-json1.c
+	curl -L https://github.com/sqlite/sqlite/raw/master/ext/misc/series.c --output src/sqlite3-series.c
+	curl -L https://github.com/sqlite/sqlite/raw/master/ext/misc/spellfix.c --output src/sqlite3-spellfix.c
+	curl -L https://github.com/sqlite/sqlite/raw/master/ext/misc/memstat.c --output src/sqlite3-memstat.c
+
+# fails if grep does find a failed test case
+# https://stackoverflow.com/questions/15367674/bash-one-liner-to-exit-with-the-opposite-status-of-a-grep-command/21788642
+test:
+	sqlite3 < test/$(suite).sql | (! grep -Ex "[0-9]+.0")
