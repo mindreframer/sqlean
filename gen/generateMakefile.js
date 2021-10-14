@@ -3,7 +3,7 @@ const { GenBase } = require("./genbase");
 
 const activeExts = [
   ["src/sqlite3-crypto.c src/crypto/*.c", "crypto"],
-  ["src/sqlite3-ipaddr.c", "ipaddr"],
+  // ["src/sqlite3-ipaddr.c", "ipaddr"],
   ["src/sqlite3-json1.c", "json1"],
   ["src/sqlite3-math.c", "math"],
   ["src/sqlite3-memstat.c", "memstat"],
