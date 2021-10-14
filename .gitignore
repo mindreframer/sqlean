@@ -4,3 +4,4 @@ src/shell.c
 src/sqlite3.c
 src/sqlite3.h
 src/sqlite3ext.h
+src.zip
