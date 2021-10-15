@@ -62,7 +62,7 @@ class Generator extends GenBase {
   genWindows() {
     this.push("compile-windows:");
     this.withIndent(() => {
-      activeExts.forEach((ext) => {
+      activeExtsWindows.forEach((ext) => {
         this.push(this.genWinLine(ext));
       });
     }, 2);

@@ -60,7 +60,6 @@ compile-macos:
 
 compile-windows:
 	gcc -shared -I. src/sqlite3-crypto.c src/crypto/*.c -o dist/crypto.dll -lm
-	gcc -shared -I. src/sqlite3-ipaddr.c -o dist/ipaddr.dll -lm
 	gcc -shared -I. src/sqlite3-json1.c -o dist/json1.dll -lm
 	gcc -shared -I. src/sqlite3-math.c -o dist/math.dll -lm
 	gcc -shared -I. src/sqlite3-shawnw_math.c -o dist/shawnw_math.dll -lm
