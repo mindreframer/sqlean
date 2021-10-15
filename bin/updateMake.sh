@@ -1,2 +1,2 @@
 #!/usr/bin/env bash
-node gen/generateMakefile.js
+node genMake/index.js

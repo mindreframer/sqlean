@@ -1,4 +1,4 @@
-## **** GENERATED CODE! see gen/generateMakefile.js for more details!
+## **** GENERATED CODE! see genMake/index.js for more details!
 
 .PHONY: prepare-dist download-sqlite compile-linux compile-windows compile-macos
 

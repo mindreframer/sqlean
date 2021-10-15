@@ -23,12 +23,12 @@ const activeExtsWindows = activeExts.filter((elem) => elem[1] != "ipaddr");
 /**
  * Keeps Makefile consistent
  *
- * to update run: `node gen/generateMakefile.js`
+ * to update run: `node genMake/index.js`
  */
 
 class Generator extends GenBase {
   run() {
-    const makeheader = fs.readFileSync("./gen/makeheader.txt", "utf-8");
+    const makeheader = fs.readFileSync("./genMake/makeheader.txt", "utf-8");
     this.push("");
     this.genLinux();
     this.push("");
