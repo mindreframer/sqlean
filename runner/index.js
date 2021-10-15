@@ -6,25 +6,48 @@ const path = require("path");
 const readlineSync = require("readline-sync");
 
 class Runner {
-  // TODO: make detect CI and make not interactive
   interactive = false;
   verbose = false;
+  failed = false;
   constructor(opts = {}) {
-    this.interactive = true;
-    this.verbose = false;
+    if (opts.ci) {
+      this.interactive = false;
+      this.verbose = true;
+    } else {
+      this.interactive = true;
+      this.verbose = false;
+    }
+
     this.prepare();
   }
 
   prepare() {
     fs.mkdirSync("test-out", { recursive: true });
   }
+
+  markAsFailed() {
+    this.failed = true;
+  }
   run() {
     this.runFiles("test/*-test.sql");
   }
   runFiles(pattern) {
     glob(pattern, (err, files) => {
+      let totalFiles = files.length;
+      let doneCallback = () => {
+        totalFiles = totalFiles - 1;
+        if (totalFiles == 0) {
+          if (this.failed) {
+            console.log("FAILED!");
+            process.exit(1);
+          } else {
+            console.log("\nOK!");
+            process.exit(0);
+          }
+        }
+      };
       files.forEach((file) => {
-        this.runFile(file);
+        this.runFile(file, doneCallback);
       });
     });
   }
@@ -35,7 +58,7 @@ class Runner {
     }
     process.stdout.write(".");
   }
-  runFile(file) {
+  runFile(file, doneCallback) {
     this.reportStart(file);
     child_process.exec(`sqlite3 < ${file}`, (error, stdout, stderr) => {
       if (error) {
@@ -46,24 +69,29 @@ class Runner {
         console.log(`stderr: ${stderr}`);
         return;
       }
-      this.assertMatch(file, stdout);
+      this.assertMatch(file, stdout, doneCallback);
     });
   }
 
-  assertMatch(file, content) {
+  assertMatch(file, content, doneCallback) {
     let fixture = this.assertionFileFor(file);
     fs.readFile(fixture, "utf-8", (err, data) => {
       if (err) {
         console.log(fixture, " does not exist, creating...");
         fs.writeFile(fixture, content, (err) => {});
+        doneCallback();
         return;
       }
 
       if (data.trim() != content.trim()) {
+        this.markAsFailed();
         console.log(file, ">>> MISMATCH!");
         this.diffFile(file, content.trim(), data.trim());
         this.promptForUpdate(file, content);
+        doneCallback();
+        return;
       }
+      doneCallback();
     });
   }
 
@@ -98,4 +126,8 @@ class Runner {
   }
 }
 
-new Runner().run();
+if (process.argv[2] == "CI") {
+  new Runner({ ci: true }).run();
+} else {
+  new Runner().run();
+}

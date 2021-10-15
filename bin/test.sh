@@ -1,2 +1,4 @@
 #!/usr/bin/env bash
-node runner/index.js
+
+## call with `bin/test.sh CI` for CI testing!
+node runner/index.js $@
