@@ -1,4 +1,4 @@
-.load dist/math_funcs
+.load dist/shawnw_math
 
 select pi();
 [{"pi()":3.1415926535897931159}]

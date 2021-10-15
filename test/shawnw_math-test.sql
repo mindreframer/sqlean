@@ -1,5 +1,5 @@
 .read test/_settings.sql
-.load dist/math_funcs
+.load dist/shawnw_math
 
 select pi();
 create table recs(id integer primary key, name text, price integer, year integer);
