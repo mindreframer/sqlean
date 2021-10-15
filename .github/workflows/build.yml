@@ -35,6 +35,8 @@ jobs:
       - name: Build for Linux
         if: matrix.os == 'ubuntu-latest'
         run: |
+          sudo curl -L https://github.com/mindreframer/sqlite/releases/download/0.7.1-3360/sqlite3-ubuntu --output /usr/local/bin/sqlite3
+          sudo chmod +x /usr/local/bin/sqlite3
           sudo apt install nodejs yarn
           sudo npm install --global yarn
           make compile-linux
