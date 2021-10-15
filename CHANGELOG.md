@@ -1,3 +1,10 @@
+### 0.8.9-3360
+
+- Files: https://github.com/mindreframer/sqlean/releases/tag/0.8.9-3360
+
+- EXT: bfsvtab extension (breadth-first search VTab)
+  - https://github.com/abetlen/sqlite3-bfsvtab-ext
+
 ### 0.8.8-3360
 
 - Files: https://github.com/mindreframer/sqlean/releases/tag/0.8.8-3360
