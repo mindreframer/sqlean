@@ -22,6 +22,7 @@ download-native:
 	curl -L https://github.com/sqlite/sqlite/raw/master/ext/misc/memstat.c --output src/sqlite3-memstat.c
 	curl -L https://github.com/shawnw/useful_sqlite_extensions/raw/master/src/math_funcs.c --output src/sqlite3-shawnw_math.c
 	patch -p0 < diffs/sqlite3-shawnw_math.diff
+	curl -L https://github.com/shawnw/useful_sqlite_extensions/raw/master/src/bloom_filter.c --output src/sqlite3-bloom_filter.c
 
 test:
 	bin/test.sh
