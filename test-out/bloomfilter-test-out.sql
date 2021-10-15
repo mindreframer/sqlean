@@ -1,5 +1,6 @@
 .load dist/bloom_filter
 
+-- https://github.com/shawnw/useful_sqlite_extensions/blob/master/docs/bloom_filter1.md
 
 CREATE TABLE plants(name);
 CREATE VIRTUAL TABLE vegetables USING bloom_filter1(20);
