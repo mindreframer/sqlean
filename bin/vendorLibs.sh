@@ -16,3 +16,6 @@ curl -L https://github.com/shawnw/useful_sqlite_extensions/raw/master/src/bloom_
 patch -p0 < diffs/sqlite3-bloom_filter.diff
 
 curl -L https://github.com/abetlen/sqlite3-bfsvtab-ext/raw/main/bfsvtab.c --output src/sqlite3-bfsvtab.c
+
+
+curl -L https://raw.githubusercontent.com/jakethaw/pivot_vtab/main/pivot_vtab.c --output src/sqlite3-pivot_vtab.c

@@ -1,5 +1,4 @@
-
-
+```
 Distance related functions (Damerau-Levenshtein, Jaro-Winkler , longest common substring & subsequence) implemented as SQLite run-time loadable extension. Any UTF-8 strings are supported.
 - https://github.com/schiffma/distlib
 
@@ -16,6 +15,17 @@ Add simple Makefile to SQLite extension `extension-functions.c` by Liam Healy
 - https://sqlite.org/contrib/ (extension-functions.c)
 
 
+Machine Learning
+    - https://github.com/mrwilson/squib
+
+
+FULLTEXT
+    - https://github.com/abiliojr/fts5-snowball (recent)
+    - https://github.com/illarionov/sqlite3-unicodesn (old)
+
+
+UUID:
+- https://github.com/benwebber/sqlite3-uuid
 
 SQLite module to define virtual tables and table-valued functions natively using SQL.
 - https://github.com/0x09/sqlite-statement-vtab
@@ -23,6 +33,8 @@ SQLite module to define virtual tables and table-valued functions natively using
 - https://github.com/shawnw/useful_sqlite_extensions
 
 
+SQLite3 Replace_Agg(const, find, replace) extension function.
+- https://github.com/jakethaw/replace_agg
 
 SQLite extension for reversing strings.
 - https://github.com/mayflower/sqlite-reverse-string
@@ -46,3 +58,4 @@ Dave Addey's SQLite extension for calculating distance using two pairs of latitu
 
 Clients
 - https://hyokai.info/ (big data viewer with plotting)
+```
