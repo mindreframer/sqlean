@@ -1,0 +1,11 @@
+--- src/sqlite3-shawnw_math.c	2021-10-15 15:22:32.000000000 +0200
++++ src/sqlite3-shawnw_math.c	2021-10-15 15:04:03.000000000 +0200
+@@ -1402,7 +1402,7 @@
+ #ifdef _WIN32
+ __declspec(dllexport)
+ #endif
+-    int sqlite3_mathfuncs_init(sqlite3 *db,
++    int sqlite3_shawnw_math_init(sqlite3 *db,
+                                char **pzErrMsg __attribute__((unused)),
+                                const sqlite3_api_routines *pApi) {
+   SQLITE_EXTENSION_INIT2(pApi);

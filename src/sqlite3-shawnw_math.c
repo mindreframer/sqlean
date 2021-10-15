@@ -1402,7 +1402,7 @@ static void mf_iqr_value(sqlite3_context *ctx) {
 #ifdef _WIN32
 __declspec(dllexport)
 #endif
-    int sqlite3_shawnwmath_init(sqlite3 *db,
+    int sqlite3_mathfuncs_init(sqlite3 *db,
                                char **pzErrMsg __attribute__((unused)),
                                const sqlite3_api_routines *pApi) {
   SQLITE_EXTENSION_INIT2(pApi);
