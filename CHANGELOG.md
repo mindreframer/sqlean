@@ -1,5 +1,6 @@
-### 0.8.6-3360
+### 0.8.7-3360
 
+- Files: https://github.com/mindreframer/sqlean/releases/tag/0.8.7-3360
 - EXT: new extension - shawnw_math (https://github.com/shawnw/useful_sqlite_extensions/raw/master/src/math_funcs.c)
 
   - it includes more statistical functions and also some mathematical functions not present in the Std-lib for SQLite (https://www.sqlite.org/lang_mathfunc.html)
