@@ -23,6 +23,7 @@ download-native:
 	curl -L https://github.com/shawnw/useful_sqlite_extensions/raw/master/src/math_funcs.c --output src/sqlite3-shawnw_math.c
 	patch -p0 < diffs/sqlite3-shawnw_math.diff
 	curl -L https://github.com/shawnw/useful_sqlite_extensions/raw/master/src/bloom_filter.c --output src/sqlite3-bloom_filter.c
+	patch -p0 < diffs/sqlite3-bloom_filter.diff
 
 test:
 	bin/test.sh

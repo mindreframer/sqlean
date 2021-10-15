@@ -192,7 +192,7 @@ static int siphash(const uint8_t *in, const size_t inlen, const uint8_t *k,
   return 0;
 }
 
-#include <sqlite3ext.h>
+#include "sqlite3ext.h"
 SQLITE_EXTENSION_INIT1
 
 static inline sqlite3_uint64 compute_bits(sqlite3_uint64 n, double p) {

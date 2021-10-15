@@ -1,0 +1,11 @@
+--- src/sqlite3-bloom_filter.c	2021-10-15 18:47:30.000000000 +0200
++++ src/sqlite3-bloom_filter-fixed.c	2021-10-15 19:08:40.000000000 +0200
+@@ -192,7 +192,7 @@
+   return 0;
+ }
+ 
+-#include <sqlite3ext.h>
++#include "sqlite3ext.h"
+ SQLITE_EXTENSION_INIT1
+ 
+ static inline sqlite3_uint64 compute_bits(sqlite3_uint64 n, double p) {
