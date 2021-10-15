@@ -87,16 +87,16 @@ class Runner {
         this.markAsFailed();
         console.log(file, ">>> MISMATCH!");
         this.diffFile(file, content.trim(), data.trim());
-        this.promptForUpdate(file, content);
-        doneCallback();
+        this.promptForUpdate(file, content, doneCallback);
         return;
       }
       doneCallback();
     });
   }
 
-  promptForUpdate(file, content) {
+  promptForUpdate(file, content, doneCallback) {
     if (!this.interactive) {
+      doneCallback();
       return;
     }
     let input = readlineSync.prompt({
@@ -108,11 +108,12 @@ class Runner {
     } else {
       console.log("skipping update for", file);
     }
+    doneCallback();
   }
 
   updateAssertion(file, content) {
     let fixture = this.assertionFileFor(file);
-    fs.writeFile(fixture, content, (err) => {});
+    fs.writeFileSync(fixture, content);
   }
   assertionFileFor(file) {
     let basefile = path.basename(file).replace(".sql", "");
