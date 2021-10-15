@@ -23,10 +23,9 @@ download-native:
 	curl -L https://github.com/shawnw/useful_sqlite_extensions/raw/master/src/math_funcs.c --output src/sqlite3-shawnw_math.c
 	patch -p0 < diffs/sqlite3-shawnw_math.diff
 
-# fails if grep does find a failed test case
-# https://stackoverflow.com/questions/15367674/bash-one-liner-to-exit-with-the-opposite-status-of-a-grep-command/21788642
 test:
-	sqlite3 < test/$(suite).sql | (! grep -Ex "[0-9]+.0")
+	bin/test.sh
+
 
 compile-linux:
 	gcc -fPIC -shared src/sqlite3-crypto.c src/crypto/*.c -o dist/crypto.so -lm
