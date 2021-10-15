@@ -1,3 +1,4 @@
+.read test/_settings.sql
 .load dist/re
 select '01', regexp_replace('the year is 2021', '[0-9]+', '2050') = 'the year is 2050';
 select '02', regexp_replace('the year is 2021', '2k21', '2050') = 'the year is 2021';

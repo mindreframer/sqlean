@@ -1,3 +1,4 @@
+.read test/_settings.sql
 .load dist/crypto
 
 select '01', md5(null) is NULL;

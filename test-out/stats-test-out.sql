@@ -1,14 +1,27 @@
 .load dist/stats
 select '01', median(value) = 50 from generate_series(1, 99);
+[{"'01'":"01","median(value) = 50":1}]
 select '02', mode(value) = 2 from (select 1 as value union all select 2 union all select 2);
+[{"'02'":"02","mode(value) = 2":1}]
 select '03', percentile_25(value) = 25 from generate_series(1, 99);
+[{"'03'":"03","percentile_25(value) = 25":1}]
 select '04', percentile_75(value) = 75 from generate_series(1, 99);
+[{"'04'":"04","percentile_75(value) = 75":1}]
 select '05', percentile_90(value) = 90 from generate_series(1, 99);
+[{"'05'":"05","percentile_90(value) = 90":1}]
 select '06', percentile_95(value) = 95 from generate_series(1, 99);
+[{"'06'":"06","percentile_95(value) = 95":1}]
 select '07', percentile_99(value) = 99 from generate_series(1, 99);
+[{"'07'":"07","percentile_99(value) = 99":1}]
 select '08', round(stddev(value), 1) = 28.7 from generate_series(1, 99);
+[{"'08'":"08","round(stddev(value), 1) = 28.7":1}]
 select '09', round(stddev_samp(value), 1) = 28.7 from generate_series(1, 99);
+[{"'09'":"09","round(stddev_samp(value), 1) = 28.7":1}]
 select '10', round(stddev_pop(value), 1) = 28.6 from generate_series(1, 99);
+[{"'10'":"10","round(stddev_pop(value), 1) = 28.6":1}]
 select '11', variance(value) = 825 from generate_series(1, 99);
+[{"'11'":"11","variance(value) = 825":1}]
 select '12', var_samp(value) = 825 from generate_series(1, 99);
+[{"'12'":"12","var_samp(value) = 825":1}]
 select '13', round(var_pop(value), 0) = 817 from generate_series(1, 99);
+[{"'13'":"13","round(var_pop(value), 0) = 817":1}]

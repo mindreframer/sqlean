@@ -31,18 +31,17 @@ jobs:
         run: |
           make prepare-dist
           make download-sqlite
-          make download-native
 
       - name: Build for Linux
         if: matrix.os == 'ubuntu-latest'
         run: |
+          sudo curl -L https://github.com/mindreframer/sqlite/releases/download/0.7.1-3360/sqlite3-ubuntu --output /usr/local/bin/sqlite3
+          sudo chmod +x /usr/local/bin/sqlite3
+          sudo apt install nodejs yarn
+          sudo npm install --global yarn
           make compile-linux
-          make test suite=crypto
-          make test suite=regexp_replace
-          make test suite=reverse
-          make test suite=split_part
-          make test suite=stats
-          make test suite=ipaddr
+          pushd runner && yarn install && popd
+          bin/test.sh CI
 
       - name: Build for Windows
         if: matrix.os == 'windows-latest'

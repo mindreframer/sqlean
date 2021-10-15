@@ -1,0 +1,1 @@
+.load dist/spellfix

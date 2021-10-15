@@ -3,9 +3,10 @@ const { GenBase } = require("./genbase");
 
 const activeExts = [
   ["src/sqlite3-crypto.c src/crypto/*.c", "crypto"],
-  // ["src/sqlite3-ipaddr.c", "ipaddr"],
+  ["src/sqlite3-ipaddr.c", "ipaddr"],
   ["src/sqlite3-json1.c", "json1"],
   ["src/sqlite3-math.c", "math"],
+  ["src/sqlite3-shawnw_math.c", "shawnw_math"],
   ["src/sqlite3-memstat.c", "memstat"],
   ["src/sqlite3-re.c src/re.c", "re"],
   ["src/sqlite3-series.c", "series"],
@@ -15,6 +16,8 @@ const activeExts = [
   ["src/sqlite3-unicode.c", "unicode"],
   ["src/sqlite3-vsv.c", "vsv"],
 ];
+
+const activeExtsWindows = activeExts.filter((elem) => elem[1] != "ipaddr");
 /**
  * Keeps Makefile consistent
  *
@@ -59,7 +62,7 @@ class Generator extends GenBase {
   genWindows() {
     this.push("compile-windows:");
     this.withIndent(() => {
-      activeExts.forEach((ext) => {
+      activeExtsWindows.forEach((ext) => {
         this.push(this.genWinLine(ext));
       });
     }, 2);
@@ -68,7 +71,7 @@ class Generator extends GenBase {
   genWindows32() {
     this.push("compile-windows-32:");
     this.withIndent(() => {
-      activeExts.forEach((ext) => {
+      activeExtsWindows.forEach((ext) => {
         this.push(this.genWin32Line(ext));
       });
     }, 2);
