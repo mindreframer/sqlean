@@ -19,3 +19,5 @@ curl -L https://github.com/abetlen/sqlite3-bfsvtab-ext/raw/main/bfsvtab.c --outp
 
 
 curl -L https://raw.githubusercontent.com/jakethaw/pivot_vtab/main/pivot_vtab.c --output src/sqlite3-pivot_vtab.c
+
+curl -L https://raw.githubusercontent.com/daschr/sqlite3_extensions/master/cron.c --output src/sqlite3-cron.c
