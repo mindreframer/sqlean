@@ -30,7 +30,6 @@ class Generator extends GenBase {
   run() {
     const makeheader = fs.readFileSync("./gen/makeheader.txt", "utf-8");
     this.push("");
-    this.push("");
     this.genLinux();
     this.push("");
     this.genMacos();
