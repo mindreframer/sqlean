@@ -78,7 +78,7 @@ class Runner {
     fs.readFile(fixture, "utf-8", (err, data) => {
       if (err) {
         console.log(fixture, " does not exist, creating...");
-        fs.writeFile(fixture, content, (err) => {});
+        this.updateAssertion(file, content);
         doneCallback();
         return;
       }

@@ -36,13 +36,11 @@ jobs:
       - name: Build for Linux
         if: matrix.os == 'ubuntu-latest'
         run: |
+          sudo apt install nodejs yarn
+          sudo npm install --global yarn
           make compile-linux
-          make test suite=crypto
-          make test suite=regexp_replace
-          make test suite=reverse
-          make test suite=split_part
-          make test suite=stats
-          make test suite=ipaddr
+          pushd runner && yarn install && popd
+          bin/test.sh CI
 
       - name: Build for Windows
         if: matrix.os == 'windows-latest'
