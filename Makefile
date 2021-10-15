@@ -20,6 +20,7 @@ download-native:
 	curl -L https://github.com/sqlite/sqlite/raw/master/ext/misc/series.c --output src/sqlite3-series.c
 	curl -L https://github.com/sqlite/sqlite/raw/master/ext/misc/spellfix.c --output src/sqlite3-spellfix.c
 	curl -L https://github.com/sqlite/sqlite/raw/master/ext/misc/memstat.c --output src/sqlite3-memstat.c
+	curl -L https://github.com/shawnw/useful_sqlite_extensions/raw/master/src/math_funcs.c --output src/sqlite3-math_funcs.c
 
 # fails if grep does find a failed test case
 # https://stackoverflow.com/questions/15367674/bash-one-liner-to-exit-with-the-opposite-status-of-a-grep-command/21788642
@@ -30,6 +31,7 @@ compile-linux:
 	gcc -fPIC -shared src/sqlite3-crypto.c src/crypto/*.c -o dist/crypto.so -lm
 	gcc -fPIC -shared src/sqlite3-json1.c -o dist/json1.so -lm
 	gcc -fPIC -shared src/sqlite3-math.c -o dist/math.so -lm
+	gcc -fPIC -shared src/sqlite3-math_funcs.c -o dist/math_funcs.so -lm
 	gcc -fPIC -shared src/sqlite3-memstat.c -o dist/memstat.so -lm
 	gcc -fPIC -shared src/sqlite3-re.c src/re.c -o dist/re.so -lm
 	gcc -fPIC -shared src/sqlite3-series.c -o dist/series.so -lm
@@ -43,6 +45,7 @@ compile-macos:
 	gcc -fPIC -dynamiclib -I src src/sqlite3-crypto.c src/crypto/*.c -o dist/crypto.dylib -lm
 	gcc -fPIC -dynamiclib -I src src/sqlite3-json1.c -o dist/json1.dylib -lm
 	gcc -fPIC -dynamiclib -I src src/sqlite3-math.c -o dist/math.dylib -lm
+	gcc -fPIC -dynamiclib -I src src/sqlite3-math_funcs.c -o dist/math_funcs.dylib -lm
 	gcc -fPIC -dynamiclib -I src src/sqlite3-memstat.c -o dist/memstat.dylib -lm
 	gcc -fPIC -dynamiclib -I src src/sqlite3-re.c src/re.c -o dist/re.dylib -lm
 	gcc -fPIC -dynamiclib -I src src/sqlite3-series.c -o dist/series.dylib -lm
@@ -56,6 +59,7 @@ compile-windows:
 	gcc -shared -I. src/sqlite3-crypto.c src/crypto/*.c -o dist/crypto.dll -lm
 	gcc -shared -I. src/sqlite3-json1.c -o dist/json1.dll -lm
 	gcc -shared -I. src/sqlite3-math.c -o dist/math.dll -lm
+	gcc -shared -I. src/sqlite3-math_funcs.c -o dist/math_funcs.dll -lm
 	gcc -shared -I. src/sqlite3-memstat.c -o dist/memstat.dll -lm
 	gcc -shared -I. src/sqlite3-re.c src/re.c -o dist/re.dll -lm
 	gcc -shared -I. src/sqlite3-series.c -o dist/series.dll -lm
@@ -69,6 +73,7 @@ compile-windows-32:
 	gcc -shared -I. src/sqlite3-crypto.c src/crypto/*.c -o dist/crypto-win32.dll -lm
 	gcc -shared -I. src/sqlite3-json1.c -o dist/json1-win32.dll -lm
 	gcc -shared -I. src/sqlite3-math.c -o dist/math-win32.dll -lm
+	gcc -shared -I. src/sqlite3-math_funcs.c -o dist/math_funcs-win32.dll -lm
 	gcc -shared -I. src/sqlite3-memstat.c -o dist/memstat-win32.dll -lm
 	gcc -shared -I. src/sqlite3-re.c src/re.c -o dist/re-win32.dll -lm
 	gcc -shared -I. src/sqlite3-series.c -o dist/series-win32.dll -lm

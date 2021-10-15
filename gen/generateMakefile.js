@@ -6,6 +6,7 @@ const activeExts = [
   // ["src/sqlite3-ipaddr.c", "ipaddr"],
   ["src/sqlite3-json1.c", "json1"],
   ["src/sqlite3-math.c", "math"],
+  ["src/sqlite3-math_funcs.c", "math_funcs"],
   ["src/sqlite3-memstat.c", "memstat"],
   ["src/sqlite3-re.c src/re.c", "re"],
   ["src/sqlite3-series.c", "series"],
