@@ -685,17 +685,12 @@ static int bf_rename(sqlite3_vtab *pVTab, const char *zNew) {
   return rc;
 }
 
-
 #ifdef _WIN32
-_declspec(dllexport)
+__declspec(dllexport)
 #endif
-int sqlite3_bloomfilter_init(
-  sqlite3 *db,
-  char **pzErrMsg __attribute__((unused)),
-  const sqlite3_api_routines *pApi
-){
-  int rc = SQLITE_OK;
+int sqlite3_bloomfilter_init(sqlite3 *db, char **pzErrMsg, const sqlite3_api_routines *pApi){
+  static const int flags = SQLITE_UTF8 | SQLITE_INNOCUOUS | SQLITE_DETERMINISTIC;
   SQLITE_EXTENSION_INIT2(pApi);
-  rc = sqlite3_create_module(db, "bloom_filter1", &bf_module, NULL);
-  return rc;
+  sqlite3_create_module(db, "bloom_filter1", &bf_module, NULL);
+  return SQLITE_OK;
 }
