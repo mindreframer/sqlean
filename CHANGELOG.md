@@ -1,3 +1,10 @@
+### 0.8.8-3360
+
+- Files: https://github.com/mindreframer/sqlean/releases/tag/0.8.8-3360
+
+- EXT: bloomfilters extension
+  - https://github.com/shawnw/useful_sqlite_extensions/blob/master/docs/bloom_filter1.md
+
 ### 0.8.7-3360
 
 - Files: https://github.com/mindreframer/sqlean/releases/tag/0.8.7-3360
