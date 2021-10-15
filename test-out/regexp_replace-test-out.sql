@@ -1,0 +1,27 @@
+.load dist/re
+select '01', regexp_replace('the year is 2021', '[0-9]+', '2050') = 'the year is 2050';
+[{"'01'":"01","regexp_replace('the year is 2021', '[0-9]+', '2050') = 'the year is 2050'":1}]
+select '02', regexp_replace('the year is 2021', '2k21', '2050') = 'the year is 2021';
+[{"'02'":"02","regexp_replace('the year is 2021', '2k21', '2050') = 'the year is 2021'":1}]
+select '03', regexp_replace('10 10 10', '10$', '') = '10 10 ';
+[{"'03'":"03","regexp_replace('10 10 10', '10$', '') = '10 10 '":1}]
+select '04', regexp_replace('10 10 10', '^10', '') = ' 10 10';
+[{"'04'":"04","regexp_replace('10 10 10', '^10', '') = ' 10 10'":1}]
+select '05', regexp_replace('hello', 'h', '') = 'ello';
+[{"'05'":"05","regexp_replace('hello', 'h', '') = 'ello'":1}]
+select '06', regexp_replace('hello', 'h', '.') = '.ello';
+[{"'06'":"06","regexp_replace('hello', 'h', '.') = '.ello'":1}]
+select '07', regexp_replace('hello', 'h', '..') = '..ello';
+[{"'07'":"07","regexp_replace('hello', 'h', '..') = '..ello'":1}]
+select '08', regexp_replace('hello', 'e', '') = 'hllo';
+[{"'08'":"08","regexp_replace('hello', 'e', '') = 'hllo'":1}]
+select '09', regexp_replace('hello', 'e', '.') = 'h.llo';
+[{"'09'":"09","regexp_replace('hello', 'e', '.') = 'h.llo'":1}]
+select '10', regexp_replace('hello', 'e', '..') = 'h..llo';
+[{"'10'":"10","regexp_replace('hello', 'e', '..') = 'h..llo'":1}]
+select '11', regexp_replace('hello', 'o', '') = 'hell';
+[{"'11'":"11","regexp_replace('hello', 'o', '') = 'hell'":1}]
+select '12', regexp_replace('hello', 'o', '.') = 'hell.';
+[{"'12'":"12","regexp_replace('hello', 'o', '.') = 'hell.'":1}]
+select '13', regexp_replace('hello', 'o', '..') = 'hell..';
+[{"'13'":"13","regexp_replace('hello', 'o', '..') = 'hell..'":1}]
