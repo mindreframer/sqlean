@@ -2,6 +2,7 @@ const fs = require("fs");
 const { GenBase } = require("./genbase");
 
 const activeExts = [
+  ["src/sqlite3-bfsvtab.c", "bfsvtab"],
   ["src/sqlite3-bloom_filter.c", "bloom_filter"],
   ["src/sqlite3-crypto.c src/crypto/*.c", "crypto"],
   ["src/sqlite3-ipaddr.c", "ipaddr"],
