@@ -31,7 +31,6 @@ jobs:
         run: |
           make prepare-dist
           make download-sqlite
-          make download-native
 
       - name: Build for Linux
         if: matrix.os == 'ubuntu-latest'
