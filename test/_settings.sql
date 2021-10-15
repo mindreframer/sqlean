@@ -1,3 +1,4 @@
 .header off
-.mode column
+.mode json
 .timer off
+.echo on
