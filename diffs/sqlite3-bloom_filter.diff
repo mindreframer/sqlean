@@ -1,0 +1,28 @@
+--- src/sqlite3-bloom_filter.c	2021-10-15 20:09:31.000000000 +0200
++++ src/sqlite3-bloom_filter-fixed.c	2021-10-15 20:11:26.000000000 +0200
+@@ -192,7 +192,7 @@
+   return 0;
+ }
+ 
+-#include <sqlite3ext.h>
++#include "sqlite3ext.h"
+ SQLITE_EXTENSION_INIT1
+ 
+ static inline sqlite3_uint64 compute_bits(sqlite3_uint64 n, double p) {
+@@ -686,11 +686,11 @@
+ }
+ 
+ #ifdef _WIN32
+-_declspec(dllexport)
++__declspec(dllexport)
+ #endif
+-    int sqlite3_bloomfilter_init(sqlite3 *db,
+-                                 char **pzErrMsg __attribute__((unused)),
+-                                 const sqlite3_api_routines *pApi) {
++int sqlite3_bloomfilter_init(sqlite3 *db, char **pzErrMsg, const sqlite3_api_routines *pApi){
++  static const int flags = SQLITE_UTF8 | SQLITE_INNOCUOUS | SQLITE_DETERMINISTIC;
+   SQLITE_EXTENSION_INIT2(pApi);
+-  return sqlite3_create_module(db, "bloom_filter1", &bf_module, NULL);
++  sqlite3_create_module(db, "bloom_filter1", &bf_module, NULL);
++  return SQLITE_OK;
+ }
