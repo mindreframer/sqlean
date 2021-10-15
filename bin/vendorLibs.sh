@@ -7,7 +7,7 @@ curl -L https://github.com/sqlite/sqlite/raw/master/ext/misc/series.c --output s
 curl -L https://github.com/sqlite/sqlite/raw/master/ext/misc/spellfix.c --output src/sqlite3-spellfix.c
 curl -L https://github.com/sqlite/sqlite/raw/master/ext/misc/memstat.c --output src/sqlite3-memstat.c
 
-### communinity maintained extensions
+### community maintained extensions
 
 curl -L https://github.com/shawnw/useful_sqlite_extensions/raw/master/src/math_funcs.c --output src/sqlite3-shawnw_math.c
 patch -p0 < diffs/sqlite3-shawnw_math.diff
