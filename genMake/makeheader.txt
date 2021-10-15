@@ -1,0 +1,18 @@
+## **** GENERATED CODE! see genMake/index.js for more details!
+
+.PHONY: prepare-dist download-sqlite compile-linux compile-windows compile-macos
+
+SQLITE_RELEASE_YEAR ?= "2021"
+SQLITE_VERSION ?= "3360000"
+
+
+prepare-dist:
+	mkdir -p dist
+	rm -f dist/*
+
+download-sqlite:
+	curl -L http://sqlite.org/$(SQLITE_RELEASE_YEAR)/sqlite-amalgamation-$(SQLITE_VERSION).zip --output src.zip
+	unzip src.zip
+	mv sqlite-amalgamation-$(SQLITE_VERSION)/* src
+	rm -rf sqlite-amalgamation-$(SQLITE_VERSION)/
+	rm src.zip

@@ -1,6 +1,6 @@
-## **** GENERATED CODE! see gen/generateMakefile.js for more details!
+## **** GENERATED CODE! see genMake/index.js for more details!
 
-.PHONY: prepare-dist download-sqlite download-native compile-linux compile-windows compile-macos test
+.PHONY: prepare-dist download-sqlite compile-linux compile-windows compile-macos
 
 SQLITE_RELEASE_YEAR ?= "2021"
 SQLITE_VERSION ?= "3360000"
@@ -14,22 +14,11 @@ download-sqlite:
 	curl -L http://sqlite.org/$(SQLITE_RELEASE_YEAR)/sqlite-amalgamation-$(SQLITE_VERSION).zip --output src.zip
 	unzip src.zip
 	mv sqlite-amalgamation-$(SQLITE_VERSION)/* src
-
-download-native:
-	curl -L https://github.com/sqlite/sqlite/raw/master/ext/misc/json1.c --output src/sqlite3-json1.c
-	curl -L https://github.com/sqlite/sqlite/raw/master/ext/misc/series.c --output src/sqlite3-series.c
-	curl -L https://github.com/sqlite/sqlite/raw/master/ext/misc/spellfix.c --output src/sqlite3-spellfix.c
-	curl -L https://github.com/sqlite/sqlite/raw/master/ext/misc/memstat.c --output src/sqlite3-memstat.c
-	curl -L https://github.com/shawnw/useful_sqlite_extensions/raw/master/src/math_funcs.c --output src/sqlite3-shawnw_math.c
-	patch -p0 < diffs/sqlite3-shawnw_math.diff
-	curl -L https://github.com/shawnw/useful_sqlite_extensions/raw/master/src/bloom_filter.c --output src/sqlite3-bloom_filter.c
-	patch -p0 < diffs/sqlite3-bloom_filter.diff
-
-test:
-	bin/test.sh
-
+	rm -rf sqlite-amalgamation-$(SQLITE_VERSION)/
+	rm src.zip
 
 compile-linux:
+	gcc -fPIC -shared src/sqlite3-bfsvtab.c -o dist/bfsvtab.so -lm
 	gcc -fPIC -shared src/sqlite3-bloom_filter.c -o dist/bloom_filter.so -lm
 	gcc -fPIC -shared src/sqlite3-crypto.c src/crypto/*.c -o dist/crypto.so -lm
 	gcc -fPIC -shared src/sqlite3-ipaddr.c -o dist/ipaddr.so -lm
@@ -46,6 +35,7 @@ compile-linux:
 	gcc -fPIC -shared src/sqlite3-vsv.c -o dist/vsv.so -lm
 
 compile-macos:
+	gcc -fPIC -dynamiclib -I src src/sqlite3-bfsvtab.c -o dist/bfsvtab.dylib -lm
 	gcc -fPIC -dynamiclib -I src src/sqlite3-bloom_filter.c -o dist/bloom_filter.dylib -lm
 	gcc -fPIC -dynamiclib -I src src/sqlite3-crypto.c src/crypto/*.c -o dist/crypto.dylib -lm
 	gcc -fPIC -dynamiclib -I src src/sqlite3-ipaddr.c -o dist/ipaddr.dylib -lm
@@ -62,6 +52,7 @@ compile-macos:
 	gcc -fPIC -dynamiclib -I src src/sqlite3-vsv.c -o dist/vsv.dylib -lm
 
 compile-windows:
+	gcc -shared -I. src/sqlite3-bfsvtab.c -o dist/bfsvtab.dll -lm
 	gcc -shared -I. src/sqlite3-bloom_filter.c -o dist/bloom_filter.dll -lm
 	gcc -shared -I. src/sqlite3-crypto.c src/crypto/*.c -o dist/crypto.dll -lm
 	gcc -shared -I. src/sqlite3-json1.c -o dist/json1.dll -lm
@@ -77,6 +68,7 @@ compile-windows:
 	gcc -shared -I. src/sqlite3-vsv.c -o dist/vsv.dll -lm
 
 compile-windows-32:
+	gcc -shared -I. src/sqlite3-bfsvtab.c -o dist/bfsvtab-win32.dll -lm
 	gcc -shared -I. src/sqlite3-bloom_filter.c -o dist/bloom_filter-win32.dll -lm
 	gcc -shared -I. src/sqlite3-crypto.c src/crypto/*.c -o dist/crypto-win32.dll -lm
 	gcc -shared -I. src/sqlite3-json1.c -o dist/json1-win32.dll -lm

@@ -5,6 +5,14 @@ const glob = require("glob");
 const path = require("path");
 const readlineSync = require("readline-sync");
 
+// basic config
+const testoutPath = "testout";
+const testPattern = "test/*-test.sql";
+
+/**
+ * Simple class to find test SQL files and exectute them via SQLITE
+ * - results are compared agains previous snapshots and mismatches are reported with a diff.
+ */
 class Runner {
   interactive = false;
   verbose = false;
@@ -22,14 +30,15 @@ class Runner {
   }
 
   prepare() {
-    fs.mkdirSync("test-out", { recursive: true });
+    fs.mkdirSync(testoutPath, { recursive: true });
   }
 
   markAsFailed() {
     this.failed = true;
   }
   run() {
-    this.runFiles("test/*-test.sql");
+    console.log("Running tests...");
+    this.runFiles(testPattern);
   }
   runFiles(pattern) {
     glob(pattern, (err, files) => {
@@ -117,7 +126,7 @@ class Runner {
   }
   assertionFileFor(file) {
     let basefile = path.basename(file).replace(".sql", "");
-    return path.join("test-out", basefile + "-out.sql");
+    return path.join(testoutPath, basefile + "-out.sql");
   }
 
   diffFile(file, c1, c2) {

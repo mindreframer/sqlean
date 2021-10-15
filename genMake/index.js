@@ -2,6 +2,7 @@ const fs = require("fs");
 const { GenBase } = require("./genbase");
 
 const activeExts = [
+  ["src/sqlite3-bfsvtab.c", "bfsvtab"],
   ["src/sqlite3-bloom_filter.c", "bloom_filter"],
   ["src/sqlite3-crypto.c src/crypto/*.c", "crypto"],
   ["src/sqlite3-ipaddr.c", "ipaddr"],
@@ -22,13 +23,12 @@ const activeExtsWindows = activeExts.filter((elem) => elem[1] != "ipaddr");
 /**
  * Keeps Makefile consistent
  *
- * to update run: `node gen/generateMakefile.js`
+ * to update run: `node genMake/index.js`
  */
 
 class Generator extends GenBase {
   run() {
-    const makeheader = fs.readFileSync("./gen/makeheader.txt", "utf-8");
-    this.push("");
+    const makeheader = fs.readFileSync("./genMake/makeheader.txt", "utf-8");
     this.push("");
     this.genLinux();
     this.push("");

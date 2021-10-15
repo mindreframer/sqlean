@@ -1,3 +1,5 @@
+### Custom patches to fix some minor issues on our side
+
 $ cp src/sqlite3-shawnw_math.c src/sqlite3-shawnw_math-fixed.c
 
 ## fix src/sqlite3-shawnw_math-fixed.c...

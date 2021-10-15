@@ -40,7 +40,7 @@ jobs:
           sudo apt install nodejs yarn
           sudo npm install --global yarn
           make compile-linux
-          pushd runner && yarn install && popd
+          pushd testrunner && yarn install && popd
           bin/test.sh CI
 
       - name: Build for Windows
