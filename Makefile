@@ -14,6 +14,8 @@ download-sqlite:
 	curl -L http://sqlite.org/$(SQLITE_RELEASE_YEAR)/sqlite-amalgamation-$(SQLITE_VERSION).zip --output src.zip
 	unzip src.zip
 	mv sqlite-amalgamation-$(SQLITE_VERSION)/* src
+	rm -rf sqlite-amalgamation-$(SQLITE_VERSION)/
+	rm src.zip
 
 compile-linux:
 	gcc -fPIC -shared src/sqlite3-bfsvtab.c -o dist/bfsvtab.so -lm
