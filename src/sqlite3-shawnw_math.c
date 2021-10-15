@@ -28,7 +28,7 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 #include <stdlib.h>
 #include <string.h>
 
-#include <sqlite3ext.h>
+#include "sqlite3ext.h"
 SQLITE_EXTENSION_INIT1
 
 static void mf_deg(sqlite3_context *p, int nArg __attribute__((unused)),
