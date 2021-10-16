@@ -1,3 +1,10 @@
+### 0.9.0-3360
+
+- Files: https://github.com/mindreframer/sqlean/releases/tag/0.9.0-3360
+- EXT:
+  - cron (https://github.com/daschr/sqlite3_extensions/)
+  - pivot_vtab (https://github.com/jakethaw/pivot_vtab/)
+
 ### 0.8.9-3360
 
 - Files: https://github.com/mindreframer/sqlean/releases/tag/0.8.9-3360
